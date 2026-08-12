@@ -127,7 +127,7 @@
             font-size: 18px;
         }
         .hero {
-            padding: 64px 0 56px;
+            padding: 64px 0 48px;
             text-align: center;
             background: #fff;
         }
@@ -141,7 +141,7 @@
             font-weight: 600;
             padding: 6px 16px;
             border-radius: 40px;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             letter-spacing: 0.3px;
         }
         .hero-badge .material-symbols-rounded {
@@ -161,11 +161,81 @@
             font-size: 20px;
             color: #4a5a55;
             font-weight: 400;
-            margin-bottom: 32px;
+            margin-bottom: 20px;
             max-width: 560px;
             margin-left: auto;
             margin-right: auto;
         }
+
+        .update-log {
+            background: #f0f7f0;
+            border: 1px solid rgba(92, 160, 92, 0.25);
+            border-radius: 16px;
+            padding: 18px 28px;
+            max-width: 680px;
+            margin: 0 auto 28px;
+            text-align: left;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            transition: box-shadow 0.2s;
+        }
+        .update-log:hover {
+            box-shadow: 0 4px 16px rgba(92, 160, 92, 0.12);
+        }
+        .update-log .icon {
+            font-size: 26px;
+            color: #5ca05c;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .update-log .content {
+            flex: 1;
+        }
+        .update-log .header-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 12px 20px;
+            margin-bottom: 6px;
+        }
+        .update-log .version {
+            font-weight: 700;
+            font-size: 16px;
+            color: #1a1a1a;
+        }
+        .update-log .version span {
+            color: #5ca05c;
+        }
+        .update-log .date {
+            font-size: 13px;
+            color: #6b7a76;
+        }
+        .update-log .date .material-symbols-rounded {
+            font-size: 14px;
+            color: #8a9a95;
+            margin-right: 2px;
+        }
+        .update-log ul {
+            list-style: none;
+            padding: 0;
+            margin: 4px 0 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px 18px;
+        }
+        .update-log ul li {
+            font-size: 14px;
+            color: #3a4a45;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .update-log ul li .material-symbols-rounded {
+            font-size: 14px;
+            color: #5ca05c;
+        }
+
         .hero-actions {
             display: flex;
             flex-wrap: wrap;
@@ -395,6 +465,9 @@
             .hero { padding: 40px 0 32px; }
             .vip-box .price { font-size: 26px; }
             .logo img { height: 28px; }
+            .update-log { padding: 14px 18px; flex-direction: column; gap: 10px; align-items: stretch; }
+            .update-log .header-row { flex-direction: column; gap: 4px; }
+            .update-log ul { flex-direction: column; gap: 2px; }
         }
         @media (max-width: 480px) {
             .design-grid { grid-template-columns: 1fr; }
@@ -404,6 +477,7 @@
             .feature-card { padding: 20px 18px; }
             .vip-box .vip-tags span { font-size: 13px; padding: 2px 12px; }
             .logo img { height: 24px; }
+            .update-log { padding: 12px 14px; }
         }
     </style>
 </head>
@@ -431,19 +505,39 @@
             </div>
             <h1>慕然工具箱 <span>—</span> 55合1全能工具箱</h1>
             <p class="hero-sub">一个App，搞定你所有的日常需求。</p>
+
+            <div class="update-log">
+                <span class="icon material-symbols-rounded">update</span>
+                <div class="content">
+                    <div class="header-row">
+                        <span class="version">v3.1.1 <span>·</span> 更新日志</span>
+                        <span class="date">
+                            <span class="material-symbols-rounded">calendar_today</span>
+                            2026.8.12
+                        </span>
+                    </div>
+                    <ul>
+                        <li><span class="material-symbols-rounded">check_small</span> 重新定义高级功能列表</li>
+                        <li><span class="material-symbols-rounded">check_small</span> 优化弹簧动画</li>
+                        <li><span class="material-symbols-rounded">check_small</span> 修复已知问题</li>
+                        <li><span class="material-symbols-rounded">check_small</span> 新增几个工具</li>
+                    </ul>
+                </div>
+            </div>
+
             <div class="hero-actions">
-                <a href="https://www.ccwmoran.top/MoranBox.apk" 
-                   onclick="event.preventDefault(); downloadApk(this.href);" 
+                <a href="https://www.ccwmoran.top/MoranBox.apk"
+                   onclick="event.preventDefault(); downloadApk(this.href);"
                    class="btn btn-primary">
                     <span class="material-symbols-rounded">download</span> 直接下载APK
                 </a>
-                <a href="https://github.com/kejicx/MoranBox/releases/latest" 
-                   target="_blank" 
+                <a href="https://github.com/kejicx/MoranBox/releases/latest"
+                   target="_blank"
                    class="btn btn-outline">
-                    <span class="material-symbols-rounded">open_in_new</span> 去发布页下载
+                    <span class="material-symbols-rounded">open_in_new</span> 去发布页下载（推荐）
                 </a>
                 <a href="https://qm.qq.com/q/1004706370" target="_blank" class="btn btn-qq">
-                    <span class="material-symbols-rounded">chat</span> 加入QQ群 1004706370
+                    <span class="material-symbols-rounded">chat</span> QQ群1004706370
                 </a>
             </div>
             <p class="hero-meta">
@@ -551,18 +645,18 @@
     <section class="section" style="padding-top:16px;padding-bottom:40px;">
         <div class="container" style="text-align:center;">
             <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px;">
-                <a href="https://www.ccwmoran.top/MoranBox.apk" 
-                   onclick="event.preventDefault(); downloadApk(this.href);" 
+                <a href="https://www.ccwmoran.top/MoranBox.apk"
+                   onclick="event.preventDefault(); downloadApk(this.href);"
                    class="btn btn-primary">
                     <span class="material-symbols-rounded">download</span> 直接下载APK
                 </a>
-                <a href="https://github.com/kejicx/MoranBox/releases/latest" 
-                   target="_blank" 
+                <a href="https://github.com/kejicx/MoranBox/releases/latest"
+                   target="_blank"
                    class="btn btn-outline">
-                    <span class="material-symbols-rounded">open_in_new</span> 去发布页下载
+                    <span class="material-symbols-rounded">open_in_new</span> 去发布页下载（推荐）
                 </a>
                 <a href="https://qm.qq.com/q/1004706370" target="_blank" class="btn btn-qq">
-                    <span class="material-symbols-rounded">chat</span> 加入QQ群 1004706370
+                    <span class="material-symbols-rounded">chat</span> QQ群1004706370
                 </a>
             </div>
             <p style="margin-top:20px;font-size:14px;color:#6b7a76;">
@@ -584,7 +678,7 @@
                     <span class="material-symbols-rounded" style="font-size:18px;">contact_support</span> 客服QQ: morganlv
                 </span>
                 <span style="display:inline-flex;align-items:center;gap:4px;color:#8a9a95;">
-                    <span class="material-symbols-rounded" style="font-size:18px;">groups</span> QQ群 1004706370
+                    <span class="material-symbols-rounded" style="font-size:18px;">groups</span> QQ群1004706370
                 </span>
             </div>
             <span style="color:#8a9a95;font-size:13px;">&copy; 2026 CCWMORAN</span>
