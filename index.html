@@ -166,7 +166,6 @@
             margin-left: auto;
             margin-right: auto;
         }
-
         .update-log {
             background: #f0f7f0;
             border: 1px solid rgba(92, 160, 92, 0.25);
@@ -235,7 +234,6 @@
             font-size: 14px;
             color: #5ca05c;
         }
-
         .hero-actions {
             display: flex;
             flex-wrap: wrap;
@@ -450,34 +448,350 @@
             color: #5ca05c;
             font-weight: 600;
         }
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 30px; }
-            .hero-sub { font-size: 17px; }
-            .hero-actions .btn { padding: 12px 24px; font-size: 15px; width: 100%; justify-content: center; }
-            .hero-actions { flex-direction: column; align-items: stretch; }
-            .features-grid { grid-template-columns: 1fr; }
-            .design-grid { grid-template-columns: 1fr 1fr; }
-            .vip-box { padding: 28px 20px; }
-            .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
-            .footer-links { justify-content: center; }
-            .header-inner { flex-wrap: wrap; gap: 8px; }
-            .section { padding: 40px 0; }
-            .hero { padding: 40px 0 32px; }
-            .vip-box .price { font-size: 26px; }
-            .logo img { height: 28px; }
-            .update-log { padding: 14px 18px; flex-direction: column; gap: 10px; align-items: stretch; }
-            .update-log .header-row { flex-direction: column; gap: 4px; }
-            .update-log ul { flex-direction: column; gap: 2px; }
+
+        .gallery-section {
+            background: #fff;
+            padding: 40px 0 48px;
         }
+        .gallery-section .section-desc {
+            margin-bottom: 28px;
+        }
+        .gallery-wrapper {
+            position: relative;
+            max-width: 920px;
+            margin: 0 auto;
+            border-radius: 24px;
+            background: #f2f5f4;
+            padding: 18px 14px;
+            touch-action: pan-y;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .gallery-track {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            height: 380px;
+            position: relative;
+        }
+        .gallery-item {
+            flex-shrink: 0;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 14px;
+            background: #e2e7e5;
+            transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+                opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+                box-shadow 0.4s ease;
+            will-change: transform, opacity;
+        }
+        .gallery-item.left,
+        .gallery-item.right {
+            width: 22%;
+            cursor: default;
+            opacity: 0.7;
+            transform: scale(0.88);
+        }
+        .gallery-item.center {
+            width: 56%;
+            cursor: pointer;
+            opacity: 1;
+            transform: scale(1);
+            box-shadow: 0 6px 28px rgba(0, 0, 0, 0.10);
+            z-index: 2;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            transition: opacity 0.35s ease;
+        }
+        .gallery-item.center img {
+            object-fit: contain;
+            background: #f0f3f2;
+        }
+        .gallery-item.left img,
+        .gallery-item.right img {
+            object-fit: cover;
+            object-position: center center;
+        }
+        .gallery-item.switching {
+            opacity: 0 !important;
+            transform: scale(0.92) !important;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+                opacity 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .gallery-item.switch-in {
+            animation: galleryPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        @keyframes galleryPop {
+            0% {
+                transform: scale(0.92);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.04);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        .gallery-item.left.switch-in,
+        .gallery-item.right.switch-in {
+            animation: galleryPopSmall 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        @keyframes galleryPopSmall {
+            0% {
+                transform: scale(0.78);
+                opacity: 0.2;
+            }
+            50% {
+                transform: scale(0.94);
+                opacity: 0.85;
+            }
+            100% {
+                transform: scale(0.88);
+                opacity: 0.7;
+            }
+        }
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 2px 16px rgba(0, 0, 0, 0.10);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+            z-index: 5;
+            color: #1a1a1a;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+        .gallery-arrow:hover {
+            background: #ffffff;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.16);
+        }
+        .gallery-arrow:active {
+            transform: translateY(-50%) scale(0.92);
+        }
+        .gallery-arrow .material-symbols-rounded {
+            font-size: 28px;
+        }
+        .gallery-arrow.left {
+            left: 8px;
+        }
+        .gallery-arrow.right {
+            right: 8px;
+        }
+        .gallery-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .gallery-dots .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #d5dbd9;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+            padding: 0;
+            flex-shrink: 0;
+        }
+        .gallery-dots .dot.active {
+            background: #5ca05c;
+            transform: scale(1.3);
+        }
+        .gallery-dots .dot:hover {
+            background: #8ab88a;
+            transform: scale(1.15);
+        }
+        .gallery-autoplay-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: #8a9a95;
+            margin-top: 12px;
+            justify-content: center;
+            width: 100%;
+        }
+        .gallery-autoplay-badge .material-symbols-rounded {
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 30px;
+            }
+            .hero-sub {
+                font-size: 17px;
+            }
+            .hero-actions .btn {
+                padding: 12px 24px;
+                font-size: 15px;
+                width: 100%;
+                justify-content: center;
+            }
+            .hero-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .design-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .vip-box {
+                padding: 28px 20px;
+            }
+            .footer-inner {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+            .footer-links {
+                justify-content: center;
+            }
+            .header-inner {
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .section {
+                padding: 40px 0;
+            }
+            .hero {
+                padding: 40px 0 32px;
+            }
+            .vip-box .price {
+                font-size: 26px;
+            }
+            .logo img {
+                height: 28px;
+            }
+            .update-log {
+                padding: 14px 18px;
+                flex-direction: column;
+                gap: 10px;
+                align-items: stretch;
+            }
+            .update-log .header-row {
+                flex-direction: column;
+                gap: 4px;
+            }
+            .update-log ul {
+                flex-direction: column;
+                gap: 2px;
+            }
+            .gallery-track {
+                height: 260px;
+                gap: 12px;
+            }
+            .gallery-item.left,
+            .gallery-item.right {
+                width: 18%;
+            }
+            .gallery-item.center {
+                width: 64%;
+            }
+            .gallery-arrow {
+                width: 36px;
+                height: 36px;
+            }
+            .gallery-arrow .material-symbols-rounded {
+                font-size: 22px;
+            }
+            .gallery-arrow.left {
+                left: 4px;
+            }
+            .gallery-arrow.right {
+                right: 4px;
+            }
+            .gallery-wrapper {
+                padding: 12px 8px;
+                border-radius: 20px;
+            }
+            .gallery-section {
+                padding: 28px 0 36px;
+            }
+        }
+
         @media (max-width: 480px) {
-            .design-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 26px; }
-            .hero-actions .btn { font-size: 14px; padding: 10px 20px; }
-            .container { padding: 0 16px; }
-            .feature-card { padding: 20px 18px; }
-            .vip-box .vip-tags span { font-size: 13px; padding: 2px 12px; }
-            .logo img { height: 24px; }
-            .update-log { padding: 12px 14px; }
+            .design-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 26px;
+            }
+            .hero-actions .btn {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+            .container {
+                padding: 0 16px;
+            }
+            .feature-card {
+                padding: 20px 18px;
+            }
+            .vip-box .vip-tags span {
+                font-size: 13px;
+                padding: 2px 12px;
+            }
+            .logo img {
+                height: 24px;
+            }
+            .update-log {
+                padding: 12px 14px;
+            }
+            .gallery-track {
+                height: 190px;
+                gap: 8px;
+            }
+            .gallery-item.left,
+            .gallery-item.right {
+                width: 14%;
+            }
+            .gallery-item.center {
+                width: 72%;
+            }
+            .gallery-arrow {
+                width: 30px;
+                height: 30px;
+            }
+            .gallery-arrow .material-symbols-rounded {
+                font-size: 18px;
+            }
+            .gallery-arrow.left {
+                left: 2px;
+            }
+            .gallery-arrow.right {
+                right: 2px;
+            }
+            .gallery-dots .dot {
+                width: 8px;
+                height: 8px;
+            }
+            .gallery-wrapper {
+                padding: 8px 4px;
+                border-radius: 16px;
+            }
+            .gallery-section .section-title {
+                font-size: 22px;
+            }
         }
     </style>
 </head>
@@ -497,6 +811,7 @@
 </header>
 
 <main>
+
     <section class="hero">
         <div class="container">
             <div class="hero-badge">
@@ -505,7 +820,6 @@
             </div>
             <h1>慕然工具箱 <span>—</span> 60＋合1全能工具箱</h1>
             <p class="hero-sub">一个App，搞定你所有的日常需求。</p>
-
             <div class="update-log">
                 <span class="icon material-symbols-rounded">update</span>
                 <div class="content">
@@ -524,7 +838,6 @@
                     </ul>
                 </div>
             </div>
-
             <div class="hero-actions">
                 <a href="https://www.ccwmoran.top/MoranBox3.2.0.apk"
                    onclick="event.preventDefault(); downloadApk(this.href);"
@@ -544,6 +857,39 @@
                 <span class="material-symbols-rounded" style="font-size:16px;vertical-align:middle;">verified</span>
                 集60＋常用工具 · 无广告 · 数据本地存储
             </p>
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="material-symbols-rounded">image</span> 应用局部截图预览
+            </h2>
+            <p class="section-desc">篇幅有限，仅展示部分截图，期待您的下载与反馈</p>
+            <div class="gallery-wrapper" id="galleryWrapper">
+                <div class="gallery-track" id="galleryTrack">
+                    <div class="gallery-item left" id="itemLeft">
+                        <img id="imgLeft" src="" alt="上一张" loading="lazy" />
+                    </div>
+                    <div class="gallery-item center" id="itemCenter">
+                        <img id="imgCenter" src="" alt="当前" loading="lazy" />
+                    </div>
+                    <div class="gallery-item right" id="itemRight">
+                        <img id="imgRight" src="" alt="下一张" loading="lazy" />
+                    </div>
+                </div>
+                <button class="gallery-arrow left" id="galleryPrev" aria-label="上一张">
+                    <span class="material-symbols-rounded">chevron_left</span>
+                </button>
+                <button class="gallery-arrow right" id="galleryNext" aria-label="下一张">
+                    <span class="material-symbols-rounded">chevron_right</span>
+                </button>
+            </div>
+            <div class="gallery-dots" id="galleryDots"></div>
+            <div class="gallery-autoplay-badge">
+                <span class="material-symbols-rounded">play_circle</span>
+                自动轮播 · 点击中间图片切换 · 悬停暂停
+            </div>
         </div>
     </section>
 
@@ -661,10 +1007,11 @@
             </div>
             <p style="margin-top:20px;font-size:14px;color:#6b7a76;">
                 <span class="material-symbols-rounded" style="font-size:16px;vertical-align:middle;">package</span>
-                 支持Android 7.0+ · 持续更新中
+                支持Android 7.0+ · 持续更新中
             </p>
         </div>
     </section>
+
 </main>
 
 <footer class="footer">
@@ -707,9 +1054,256 @@
                 URL.revokeObjectURL(link.href);
             })
             .catch(err => {
-                alert('下载失败：' + err.message + '\n请尝试“去发布页下载”或稍后重试。');
+                alert('下载失败：' + err.message + '\n请尝试"去发布页下载"或稍后重试。');
             });
     }
+
+    (function() {
+        const images = [
+            'https://gp3e.saobby.com/i/Q0MJ0je6uD0cL8M1.jpg',
+            'https://gp3e.saobby.com/i/CLM9JaNwoNDpGI4F.jpg',
+            'https://gp3e.saobby.com/i/qF61Hs0D0K5RzTF1.jpg',
+            'https://gp3e.saobby.com/i/zlOcRC9SAUgUBRom.jpg',
+            'https://gp3e.saobby.com/i/u4zvEWbWBMbrLtUj.jpg',
+            'https://gp3e.saobby.com/i/d6dYiuL42EVt0Iu6.jpg',
+            'https://gp3e.saobby.com/i/hDGyIOSZrxYJTySN.jpg',
+            'https://gp3e.saobby.com/i/cVyIDuEWXm6ybSgt.jpg'
+        ];
+        const total = images.length;
+        const imgLeft = document.getElementById('imgLeft');
+        const imgCenter = document.getElementById('imgCenter');
+        const imgRight = document.getElementById('imgRight');
+        const itemLeft = document.getElementById('itemLeft');
+        const itemCenter = document.getElementById('itemCenter');
+        const itemRight = document.getElementById('itemRight');
+        const prevBtn = document.getElementById('galleryPrev');
+        const nextBtn = document.getElementById('galleryNext');
+        const dotsContainer = document.getElementById('galleryDots');
+        let currentIndex = 0;
+        let isTransitioning = false;
+        let autoPlayTimer = null;
+
+        for (let i = 0; i < total; i++) {
+            const dot = document.createElement('button');
+            dot.className = 'dot' + (i === 0 ? ' active' : '');
+            dot.dataset.index = i;
+            dot.setAttribute('aria-label', '跳转到第' + (i + 1) + '张');
+            dot.addEventListener('click', function() {
+                const idx = parseInt(this.dataset.index);
+                if (idx !== currentIndex && !isTransitioning) {
+                    goTo(idx);
+                }
+            });
+            dotsContainer.appendChild(dot);
+        }
+
+        function getPrevIndex(i) { return (i - 1 + total) % total; }
+        function getNextIndex(i) { return (i + 1) % total; }
+
+        function updateDots(activeIdx) {
+            const dots = dotsContainer.querySelectorAll('.dot');
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === activeIdx);
+            });
+        }
+
+        function goTo(index) {
+            if (isTransitioning || index === currentIndex) return;
+            isTransitioning = true;
+            stopAutoPlay();
+            const prevUrl = images[getPrevIndex(index)];
+            const currUrl = images[index];
+            const nextUrl = images[getNextIndex(index)];
+            itemLeft.classList.add('switching');
+            itemCenter.classList.add('switching');
+            itemRight.classList.add('switching');
+            setTimeout(() => {
+                imgLeft.src = prevUrl;
+                imgCenter.src = currUrl;
+                imgRight.src = nextUrl;
+                let loaded = 0;
+                const checkLoad = () => {
+                    loaded++;
+                    if (loaded === 3) {
+                        itemLeft.classList.remove('switching');
+                        itemCenter.classList.remove('switching');
+                        itemRight.classList.remove('switching');
+                        itemLeft.classList.add('switch-in');
+                        itemCenter.classList.add('switch-in');
+                        itemRight.classList.add('switch-in');
+                        setTimeout(() => {
+                            itemLeft.classList.remove('switch-in');
+                            itemCenter.classList.remove('switch-in');
+                            itemRight.classList.remove('switch-in');
+                        }, 600);
+                        currentIndex = index;
+                        updateDots(currentIndex);
+                        isTransitioning = false;
+                        startAutoPlay();
+                    }
+                };
+                imgLeft.onload = checkLoad;
+                imgCenter.onload = checkLoad;
+                imgRight.onload = checkLoad;
+                if (imgLeft.complete) checkLoad();
+                if (imgCenter.complete) checkLoad();
+                if (imgRight.complete) checkLoad();
+                setTimeout(() => {
+                    if (isTransitioning) {
+                        itemLeft.classList.remove('switching');
+                        itemCenter.classList.remove('switching');
+                        itemRight.classList.remove('switching');
+                        itemLeft.classList.add('switch-in');
+                        itemCenter.classList.add('switch-in');
+                        itemRight.classList.add('switch-in');
+                        setTimeout(() => {
+                            itemLeft.classList.remove('switch-in');
+                            itemCenter.classList.remove('switch-in');
+                            itemRight.classList.remove('switch-in');
+                        }, 600);
+                        currentIndex = index;
+                        updateDots(currentIndex);
+                        isTransitioning = false;
+                        startAutoPlay();
+                    }
+                }, 3000);
+            }, 280);
+        }
+
+        function next() {
+            if (isTransitioning) return;
+            goTo(getNextIndex(currentIndex));
+        }
+
+        function prev() {
+            if (isTransitioning) return;
+            goTo(getPrevIndex(currentIndex));
+        }
+
+        function startAutoPlay() {
+            if (autoPlayTimer) return;
+            autoPlayTimer = setInterval(() => {
+                if (!isTransitioning) {
+                    next();
+                }
+            }, 3500);
+        }
+
+        function stopAutoPlay() {
+            if (autoPlayTimer) {
+                clearInterval(autoPlayTimer);
+                autoPlayTimer = null;
+            }
+        }
+
+        function resetAutoPlay() {
+            stopAutoPlay();
+            startAutoPlay();
+        }
+
+        prevBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            prev();
+            resetAutoPlay();
+        });
+
+        nextBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            next();
+            resetAutoPlay();
+        });
+
+        itemCenter.addEventListener('click', function() {
+            if (!isTransitioning) {
+                next();
+                resetAutoPlay();
+            }
+        });
+
+        const wrapper = document.getElementById('galleryWrapper');
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        wrapper.addEventListener('touchstart', function(e) {
+            const touch = e.touches[0];
+            touchStartX = touch.clientX;
+            touchStartY = touch.clientY;
+            stopAutoPlay();
+        }, { passive: true });
+
+        wrapper.addEventListener('touchmove', function(e) {
+            const touch = e.touches[0];
+            const dx = Math.abs(touch.clientX - touchStartX);
+            const dy = Math.abs(touch.clientY - touchStartY);
+            if (dx > dy && dx > 10) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        wrapper.addEventListener('touchend', function(e) {
+            if (touchStartX === 0) return;
+            const touchEnd = e.changedTouches[0];
+            const dx = touchEnd.clientX - touchStartX;
+            const dy = touchEnd.clientY - touchStartY;
+            if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 30) {
+                if (dx > 0) {
+                    prev();
+                } else {
+                    next();
+                }
+                resetAutoPlay();
+            } else {
+                startAutoPlay();
+            }
+            touchStartX = 0;
+            touchStartY = 0;
+        }, { passive: true });
+
+        wrapper.addEventListener('mouseenter', function() {
+            stopAutoPlay();
+        });
+        wrapper.addEventListener('mouseleave', function() {
+            startAutoPlay();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') {
+                prev();
+                resetAutoPlay();
+            } else if (e.key === 'ArrowRight') {
+                next();
+                resetAutoPlay();
+            }
+        });
+
+        currentIndex = 0;
+        const initPrev = images[getPrevIndex(0)];
+        const initCurr = images[0];
+        const initNext = images[getNextIndex(0)];
+        imgLeft.src = initPrev;
+        imgCenter.src = initCurr;
+        imgRight.src = initNext;
+        let initLoaded = 0;
+        const initCheck = () => {
+            initLoaded++;
+            if (initLoaded === 3) {
+                updateDots(0);
+                setTimeout(startAutoPlay, 600);
+            }
+        };
+        imgLeft.onload = initCheck;
+        imgCenter.onload = initCheck;
+        imgRight.onload = initCheck;
+        if (imgLeft.complete) initCheck();
+        if (imgCenter.complete) initCheck();
+        if (imgRight.complete) initCheck();
+        setTimeout(() => {
+            if (initLoaded < 3) {
+                updateDots(0);
+                setTimeout(startAutoPlay, 600);
+            }
+        }, 2000);
+    })();
 </script>
 
 </body>
